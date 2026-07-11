@@ -627,12 +627,7 @@ export function getEmployee() {
     }
   }
 }
-export function deleteBranch(data:any) {
-  
-}
-export function updateBranch(data:any)  {
-  
-}
+
 export type Rating = {
   id: number;
   rating: number;

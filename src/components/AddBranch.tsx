@@ -1,5 +1,5 @@
 import { useState, type FormEvent, useMemo } from "react";
-import { createBranch, getbranch, getGover, deleteBranch, updateBranch } from "../libs/data";
+import { createBranch, getbranch, getGover } from "../libs/data";
 import Dialog from "./Dialog";
 
 interface Branch {
@@ -20,9 +20,9 @@ export default function AddBranch() {
   const branches = getbranch() as Branch[];
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isEditOpen, setIsEditOpen] = useState(false);
+  // const [isEditOpen, setIsEditOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [editingBranch, setEditingBranch] = useState<Branch | null>(null);
+  // const [editingBranch, setEditingBranch] = useState<Branch | null>(null);
 
   // Filter branches based on search query
   const filteredBranches = useMemo(() => {
@@ -33,7 +33,7 @@ export default function AddBranch() {
         branch.name.toLowerCase().includes(query) ||
         branch.goverName.toLowerCase().includes(query) ||
         branch.address.toLowerCase().includes(query) ||
-        branch.phoneNumber.toString().includes(query)
+        branch.phoneNumber.toString().includes(query),
     );
   }, [branches, searchQuery]);
 
@@ -64,55 +64,61 @@ export default function AddBranch() {
     }
   }
 
-  function handleEditSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!editingBranch) return;
+  // function handleEditSubmit(event: FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+  //   if (!editingBranch) return;
 
-    const formData = new FormData(event.currentTarget);
-    const branchName = formData.get("branchName")?.toString() ?? "";
-    const goveName = formData.get("governorate")?.toString() ?? "";
-    const address = formData.get("address")?.toString() ?? "";
-    const phoneNumber = formData.get("phone");
+  //   const formData = new FormData(event.currentTarget);
+  //   const branchName = formData.get("branchName")?.toString() ?? "";
+  //   const goveName = formData.get("governorate")?.toString() ?? "";
+  //   const address = formData.get("address")?.toString() ?? "";
+  //   const phoneNumber = formData.get("phone");
 
-    const isSucesseed = updateBranch({
-      id: editingBranch.id,
-      name: branchName,
-      goverName: goveName,
-      address: address,
-      phoneNumber: Number(phoneNumber),
-    });
+  //  updateBranch({
+  //     id: editingBranch.id,
+  //     name: branchName,
+  //     goverName: goveName,
+  //     address: address,
+  //     phoneNumber: Number(phoneNumber),
+  //   });
 
-    // if (isSucesseed) {
-    //   alert(`تم تحديث بيانات الفرع "${branchName}" بنجاح!`);
-    //   setIsEditOpen(false);
-    //   setEditingBranch(null);
-    // } else {
-    //   alert("حدث خطأ أثناء محاولة تحديث البيانات، يرجى المحاولة مجدداً.");
-    // }
-  }
+  //   // if (isSucesseed) {
+  //   //   alert(`تم تحديث بيانات الفرع "${branchName}" بنجاح!`);
+  //   //   setIsEditOpen(false);
+  //   //   setEditingBranch(null);
+  //   // } else {
+  //   //   alert("حدث خطأ أثناء محاولة تحديث البيانات، يرجى المحاولة مجدداً.");
+  //   // }
+  // }
 
-  function handleDelete(branch: Branch) {
-    // if (window.confirm(`هل أنت متأكد من حذف الفرع "${branch.name}"؟`)) {
-    //   const isDeleted = deleteBranch(branch.id);
-    //   if (isDeleted) {
-    //     alert(`تم حذف الفرع "${branch.name}" بنجاح!`);
-    //   } else {
-    //     alert("حدث خطأ أثناء محاولة الحذف، يرجى المحاولة مجدداً.");
-    //   }
-    // }
-  }
+  // function handleDelete(branch: Branch) {
+  //   // if (window.confirm(`هل أنت متأكد من حذف الفرع "${branch.name}"؟`)) {
+  //   //   const isDeleted = deleteBranch(branch.id);
+  //   //   if (isDeleted) {
+  //   //     alert(`تم حذف الفرع "${branch.name}" بنجاح!`);
+  //   //   } else {
+  //   //     alert("حدث خطأ أثناء محاولة الحذف، يرجى المحاولة مجدداً.");
+  //   //   }
+  //   // }
+  // }
 
-  function openEditDialog(branch: Branch) {
-    setEditingBranch(branch);
-    setIsEditOpen(true);
-  }
+  // function openEditDialog(branch: Branch) {
+  //   setEditingBranch(branch);
+  //   setIsEditOpen(true);
+  // }
 
   return (
     <main className="admin-page" dir="rtl">
       {/* Search & Add Bar */}
       <div className="branch-toolbar">
         <div className="search-box">
-          <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            className="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.3-4.3" />
           </svg>
@@ -124,7 +130,9 @@ export default function AddBranch() {
             className="search-input"
           />
           {searchQuery && (
-            <button className="clear-search" onClick={() => setSearchQuery("")}>×</button>
+            <button className="clear-search" onClick={() => setSearchQuery("")}>
+              ×
+            </button>
           )}
         </div>
 
@@ -133,7 +141,12 @@ export default function AddBranch() {
           setIsOpen={setIsOpen}
           btn={
             <button className="add-branch-btn" onClick={() => setIsOpen(true)}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
                 <path d="M12 5v14M5 12h14" />
               </svg>
               إضافة فرع
@@ -162,7 +175,12 @@ export default function AddBranch() {
 
               <label>
                 اسم الفرع
-                <input type="text" name="branchName" placeholder="مثال: فرع عدن" required />
+                <input
+                  type="text"
+                  name="branchName"
+                  placeholder="مثال: فرع عدن"
+                  required
+                />
               </label>
 
               <label>
@@ -182,7 +200,7 @@ export default function AddBranch() {
       </div>
 
       {/* Edit Dialog */}
-      {editingBranch && (
+      {/* {editingBranch && (
         <Dialog
           isopen={isEditOpen}
           setIsOpen={setIsEditOpen}
@@ -238,7 +256,7 @@ export default function AddBranch() {
             </form>
           </section>
         </Dialog>
-      )}
+      )} */}
 
       {/* Branch Table */}
       <div className="branch-table-wrapper">
@@ -256,58 +274,55 @@ export default function AddBranch() {
             <div className="col-phone">الهاتف</div>
             <div className="col-actions">إجراءات</div>
           </div>
-  <div className="headersticky">
-          {/* Table Body */}
-          {filteredBranches.length === 0 ? (
-            <div className="branch-empty">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <p>لا توجد فروع مطابقة للبحث</p>
-            </div>
-          ) : (
-            
-            filteredBranches.map((branch, index) => (
-              <div key={branch.id} className="branch-row">
-                <div className="col-num">
-                  <span className="row-number">{index + 1}</span>
-                </div>
-                <div className="col-name">
-                  <strong>{branch.name}</strong>
-                </div>
-                <div className="col-gov">
-                  <span className="gov-badge">{branch.goverName}</span>
-                </div>
-                <div className="col-address">{branch.address}</div>
-                <div className="col-phone">{branch.phoneNumber}</div>
-                <div className="col-actions">
-                  <button
-                    className="action-btn edit-btn"
-                    onClick={() => openEditDialog(branch)}
-                    title="تعديل"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                    </svg>
-                  </button>
-                  <button
-                    className="action-btn delete-btn"
-                    onClick={() => handleDelete(branch)}
-                    title="حذف"
-                  >
-                    {/* <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="3 6 5 6 21 6" />
-                      <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                      <line x1="10" y1="11" x2="10" y2="17" />
-                      <line x1="14" y1="11" x2="14" y2="17" />
-                    </svg> */}
-                    <span>d</span>
-                  </button>
-                </div>
+          <div className="headersticky">
+            {/* Table Body */}
+            {filteredBranches.length === 0 ? (
+              <div className="branch-empty">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p>لا توجد فروع مطابقة للبحث</p>
               </div>
-            ))
-          )}</div>
+            ) : (
+              filteredBranches.map((branch, index) => (
+                <div key={branch.id} className="branch-row">
+                  <div className="col-num">
+                    <span className="row-number">{index + 1}</span>
+                  </div>
+                  <div className="col-name">
+                    <strong>{branch.name}</strong>
+                  </div>
+                  <div className="col-gov">
+                    <span className="gov-badge">{branch.goverName}</span>
+                  </div>
+                  <div className="col-address">{branch.address}</div>
+                  <div className="col-phone">{branch.phoneNumber}</div>
+                  <div className="col-actions">
+                    {/* <button
+                      className="action-btn edit-btn"
+                      onClick={() => openEditDialog(branch)}
+                      title="تعديل"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                      </svg>
+                    </button> */}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </main>
