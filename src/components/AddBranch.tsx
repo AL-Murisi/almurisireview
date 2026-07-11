@@ -1,5 +1,5 @@
 import { useState, type FormEvent, useMemo } from "react";
-import { createBranch, getbranch, getGover } from "../libs/data";
+import { createBranch, getbranch, branches,governorates, getGover } from "../libs/data";
 import Dialog from "./Dialog";
 
 interface Branch {
@@ -16,8 +16,8 @@ interface Governorate {
 }
 
 export default function AddBranch() {
-  const governorates = getGover() as Governorate[];
-  const branches = getbranch() as Branch[];
+  // const governorates = getGover() as Governorate[];
+  // const branches = getbranch() as Branch[];
 
   const [isOpen, setIsOpen] = useState(false);
   // const [isEditOpen, setIsEditOpen] = useState(false);
@@ -31,9 +31,9 @@ export default function AddBranch() {
     return branches.filter(
       (branch) =>
         branch.name.toLowerCase().includes(query) ||
-        branch.goverName.toLowerCase().includes(query) ||
+        branch.governorate.toLowerCase().includes(query) ||
         branch.address.toLowerCase().includes(query) ||
-        branch.phoneNumber.toString().includes(query),
+        branch.phone.toString().includes(query),
     );
   }, [branches, searchQuery]);
 
@@ -166,8 +166,8 @@ export default function AddBranch() {
                 <select name="governorate" required>
                   <option value="">اختر المحافظة</option>
                   {governorates.map((governorate) => (
-                    <option key={governorate.id} value={governorate.goverName}>
-                      {governorate.goverName}
+                    <option key={governorate.id} value={governorate.name}>
+                      {governorate.name}
                     </option>
                   ))}
                 </select>
@@ -298,10 +298,10 @@ export default function AddBranch() {
                     <strong>{branch.name}</strong>
                   </div>
                   <div className="col-gov">
-                    <span className="gov-badge">{branch.goverName}</span>
+                    <span className="gov-badge">{branch.governorate}</span>
                   </div>
                   <div className="col-address">{branch.address}</div>
-                  <div className="col-phone">{branch.phoneNumber}</div>
+                  <div className="col-phone">{branch.phone}</div>
                   <div className="col-actions">
                     {/* <button
                       className="action-btn edit-btn"
