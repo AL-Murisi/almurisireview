@@ -1,0 +1,295 @@
+.company-name h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.company-name p {
+  font-size: 0.7rem;
+  color: #e8913a;
+  margin: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  flex-direction: row-reverse;
+justify-content: space-between;
+  gap: 36px;
+  margin: 0 auto;
+  min-height: calc(100vh - 90px);
+}
+
+.hero-image-container {
+  flex: 0 0 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+/* Right Side - Content */
+.hero-content {
+  flex: 1;
+  text-align: right;
+}
+
+.hero-content h2 {
+  font-size: 2.05rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: #e0e0e0;
+}
+
+ 
+/* Features */
+.features {
+  display: grid;
+  align-items: center;
+  justify-content:center;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px;
+}
+.features .feature{
+   border-radius: 22px;
+    background: linear-gradient(180deg, #09226d 0%, #020e1d 50%, #383a17 100%);
+
+   /* background:
+    radial-gradient(
+      circle at top left,
+      rgba(180, 134, 6, 0.18),
+      transparent 40%
+    ); 
+     */
+     border: 1px solid rgba(255, 255, 255, 0.11); 
+  transition:
+    transform 0.25s,
+    border-color 0.25s,
+    background 0.25s;
+}
+.features .feature p{
+  color: #e0e0e0;
+}
+.features .feature h3{
+  color: #d8d508;
+}
+.feature:hover {
+  transform: translateY(-5px);
+  color: #e0e0e0;
+  background: linear-gradient(180deg, #09226d 10%, #020e1d 50%, #182a41 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+  font-size: 1.7rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+
+
+
+.employee{
+   gap: 20px;
+  background-color: rgba(
+    8,
+    31,
+    73,
+    0.85
+  ); /* Matches your UI theme dark blue with a subtle tint */
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.employee-container{
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  justify-content: space-between;
+}
+/* Responsive */
+@media (max-width: 968px) {
+  .hero-section {
+    flex-direction: column-reverse;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+
+
+ 
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+justify-content: center;
+align-items: center;
+    justify-content: en;
+  }
+
+  .feature {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+@media (max-width: 1080px) {
+  from{
+    background: #020e1d;
+  }
+}
+@media (max-width: 480px) {
+  .hero-image-container img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+}
+/* Make the entire form container look seamless and adaptive */
+form {
+  gap: 20px;
+  background-color: rgba(
+    8,
+    31,
+    73,
+    0.85
+  ); /* Matches your UI theme dark blue with a subtle tint */
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Row-based layout on large screens, wraps automatically */
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Form groups take up roughly 1/3 of the space on wide screens */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 calc(33.333% - 14px); /* Three items per row */
+  min-width: 220px; /* Prevents text elements from squishing too much */
+}
+
+/* Force specific elements like full textarea and rating cards to take up a full row */
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+/* Clean input adjustments */
+input,
+select,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #1c386e;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-size: 1rem;
+}
+
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+.feature {
+  background:#f3f4f6;
+  border-radius: 16px;
+  padding: 14px 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.feature h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  color: #1f1488;
+  font-weight: 600;
+}
+.feature p {
+  font-size: 0.8rem;
+  color: #020f29;
+  line-height: 1.4;
+}.feature span {
+  font-size: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b4194;
+  margin-bottom: 12px;
+  border-radius: 100%;
+  width: 52px;
+  height: 52px;
+}
+/* R.feature-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 12px;
+}ating Card Container Alignment */
+.rating-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Text adjustments */
+label {
+  font-weight: bold;
+  color: white;
+  font-size: 1.1rem;
+  text-align: right; /* Aligns text correctly for Arabic layout */
+}
+
+/* Responsive breakpoint: turns everything into a neat column */
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+  }
+
+  form {
+    padding: 20px;
+  }
+}
