@@ -5,12 +5,23 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #0d1b5a; /* Match gradient start color */
+  min-height: 100%;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(180deg, #0d1b5a 0%, #123b69 50%, #182a41 100%);
   color: white;
   min-height: 100vh;
+  min-height: 100dvh; /* Use dynamic viewport height for mobile */
   direction: rtl;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 section {
   display: flex;

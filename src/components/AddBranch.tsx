@@ -1,5 +1,5 @@
 import { useState, type FormEvent, useMemo } from "react";
-import { createBranch, getbranch, branches,governorates, getGover } from "../libs/data";
+import { createBranch, getbranch, branches, getGover } from "../libs/data";
 import Dialog from "./Dialog";
 
 interface Branch {
@@ -16,7 +16,7 @@ interface Governorate {
 }
 
 export default function AddBranch() {
-  // const governorates = getGover() as Governorate[];
+  const governorates = getGover() as Governorate[];
   // const branches = getbranch() as Branch[];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -166,8 +166,8 @@ export default function AddBranch() {
                 <select name="governorate" required>
                   <option value="">اختر المحافظة</option>
                   {governorates.map((governorate) => (
-                    <option key={governorate.id} value={governorate.name}>
-                      {governorate.name}
+                    <option key={governorate.id} value={governorate.goverName}>
+                      {governorate.goverName}
                     </option>
                   ))}
                 </select>

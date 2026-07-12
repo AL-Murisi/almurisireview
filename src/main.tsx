@@ -10,7 +10,8 @@ import AddGovernorate from "./components/AddGovernorate.tsx";
 import Nav from "./components/nav.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  
+  <StrictMode >
     <BrowserRouter>
    <Nav /> 
       <Routes>
